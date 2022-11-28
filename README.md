@@ -1,4 +1,4 @@
-# Minyma Python+FastApi stareter template
+# Minyma Python+FastApi starter template
 > Kickstart your backend application with a pre-configured FastAPI + SQLAlchemy template
 
 
@@ -15,11 +15,12 @@
 ## Install
 
 ### Fetch the code
-Sadly there is no alternative to Node.js's `degit` tool, so use:
+Clone repo, remove git history:
 ```
 git clone https://github.com/minyma-technologies/python-fastapi-starter
 cd python-fastapi-starter
 rm -rf ./.git
+git init
 ```
 
 **Alternatively**, on GitHub hit `Use this template` to create a new repository based on this, but without the git history. You can then clone the new repository to your machine.
@@ -54,13 +55,18 @@ Poetry is an alternative python package manager. From experience, the default py
 ### Configuration and secrets
 There are three different environments preconfigured: `test`, `dev`, and `prod`. To switch environments set `APP_ENV` to one of the above environment names. Use `.env` (default, for `dev`), `.env.test` and `.env.prod` for storing the values. A sample configuration is provided in `.env.sample`
 
-### Linting, testing, coverage
+### Development scripts
 As a jump-in replacement for `npm run ...` you can use `make`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
-```
-make lint
-make test
-make coverage
-```
+Avaialble scripts are:
+
+| Command           | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `make lint_fix`   | Run black and ruff to fix lint issues       |
+| `make lint_check` | Run black and ruff to check for lint issues |
+| `make test`       | Run unit tests                              |
+| `make coverage`   | Run coverage test                           |
+| `make start`      | Start the app                               |
+| `make start_dev`  | Start the app with live reload              |
 
 ## TODO:
 

@@ -9,3 +9,9 @@ test:
 	
 coverage:
 	APP_ENV=test pytest tests --cov
+	
+start:
+	poetry run uvicorn app.main:app
+	
+start_dev:
+	poetry run uvicorn app.main:app --reload
