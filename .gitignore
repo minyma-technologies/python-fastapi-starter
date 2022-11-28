@@ -1,0 +1,9 @@
+.venv
+__pycache__
+.ruff_cache
+.pytest_cache
+.hypothesis
+.env*
+!.env.sample
+.coverage
+.doit.db

@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "python-fastapi-postgres-starter"
+version = "0.0.1"
+description = "A starter template to use for Python+Fastapi applications, with SQLAlchemy as ORM and lots of DevOps configuration enabled"
+authors = ["godraadam"]
+readme = "README.md"
+packages = [{include = "python_fastapi_postgres_starter"}]
+
+[tool.poetry.dependencies]
+python = "^3.8.1"
+fastapi = {extras = ["all"], version = "^0.87.0"}
+passlib = "^1.7.4"
+uvicorn = "^0.20.0"
+psycopg2-binary = "^2.9.5"
+alembic = "^1.8.1"
+python-jose = "^3.3.0"
+cryptography = "^38.0.4"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+ruff = "^0.0.141"
+pytest = "^7.2.0"
+httpx = "^0.23.1"
+pytest-mock = "^3.10.0"
+pytest-cov = "^4.0.0"
+make = "^0.1.6.post2"
+
+[tool.poetry.scripts]
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+# ruff configuration
+
+[tool.black]
+# black configuration
+
