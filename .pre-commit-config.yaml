@@ -5,6 +5,7 @@ repos:
   hooks:
   -   id: black
       stages: [push]
+
 # lint with ruff
 - repo: https://github.com/charliermarsh/ruff-pre-commit
   rev: v0.0.156
@@ -23,6 +24,5 @@ repos:
 - repo: https://github.com/commitizen-tools/commitizen
   rev: master
   hooks:
-    - id: commitizen
     - id: commitizen-branch
       stages: [push]

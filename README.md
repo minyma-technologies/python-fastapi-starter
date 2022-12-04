@@ -28,6 +28,7 @@ git init
 ### Install dependencies
 - this template uses Poetry. You can install it like so: `pip install poetry`
 - once installed run `poetry install` to install the dependencies
+- run `pre-commit install --hook-type pre-commit --hook-type pre-push` to install git hooks
 
 ### Run the application locally
 ```
@@ -44,6 +45,9 @@ docker-compose up --build
 ```
 
 ## Usage
+
+### Commit via commitizen
+Upon push, the last commit message will be checked against [conventional commits](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type), to enforce uniform commit messages on the remote repository. To start a command line guide to easily create a conventional message use: `cz commit`
 
 ### Using Poetry
 Poetry is an alternative python package manager. From experience, the default python package manager `pip` and the virtual environment tool `venv` are poorly designed and often cause package configuration issues. Enter poetry: a modern package manager with a more sane API.
