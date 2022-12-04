@@ -3,3 +3,4 @@ __pycache__
 .*
 # un-ignore dot files here
 !.env.sample
+!.pre-commit-config.yaml

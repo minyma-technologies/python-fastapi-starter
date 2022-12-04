@@ -25,9 +25,13 @@ httpx = "^0.23.1"
 pytest-mock = "^3.10.0"
 pytest-cov = "^4.0.0"
 make = "^0.1.6.post2"
+pre-commit = "^2.20.0"
+commitizen = "^2.37.1"
 
-[tool.poetry.scripts]
-
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.0.1"
+tag_format = "$version"
 
 [build-system]
 requires = ["poetry-core"]
