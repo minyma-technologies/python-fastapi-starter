@@ -13,11 +13,11 @@ runs:
       uses: actions/cache@v2
       with:
         path: ~/.local
-        key: poetry-1.1.12-0
+        key: poetry-1.2.2-0
 
     - uses: snok/install-poetry@v1
       with:
-        version: 1.1.12
+        version: 1.2.2
         virtualenvs-create: true
         virtualenvs-in-project: true
 
@@ -30,5 +30,3 @@ runs:
     - run: poetry install --no-interaction --no-root
       shell: bash
       if: steps.cache-deps.outputs.cache-hit != 'true'
-    - run: poetry install --no-interaction
-      shell: bash

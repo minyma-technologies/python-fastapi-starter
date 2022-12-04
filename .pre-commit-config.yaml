@@ -1,0 +1,20 @@
+# enforce uniform formating
+repos:
+- repo: local
+  hooks:
+  -   id: lint
+      name: Run format and style checkers
+      entry: make
+      args: ['lint_check']
+      language: system
+      stages: [push]
+
+# enforce conventional commit messages  
+- repo: local
+  hooks:
+    - id: commitizen
+      name: Validate last commit message
+      entry: make 
+      args: ['check_commit_msg']
+      language: system
+      stages: [push]
