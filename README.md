@@ -6,6 +6,7 @@
 - [x] [FastAPI](https://fastapi.tiangolo.com/) as web framework
 - [x] [SQLAlchemy](https://www.sqlalchemy.org/) as the ORM
 - [x] [PostreSQL](https://www.postgresql.org/) as database engine
+- [x] [Alembic](https://alembic.sqlalchemy.org/en/latest/) for database migrations
 - [x] [JWT](https://jwt.io/) for auth 
 - [x] [Poetry](https://python-poetry.org/) as package manager
 - [x] [PyTest](https://docs.pytest.org/en/7.2.x/) for unit testing
@@ -74,10 +75,10 @@ Avaialble scripts are:
 | `make coverage`    | Run coverage test                           |
 | `make start`       | Start the app                               |
 | `make start_dev`   | Start the app with live reload              |
+| `make migrate  `   | Autogenerate database migration             |
 
 ## TODO:
 
-- [ ] setup pre-commit
 - [ ] service layer tests
 - [ ] auto changelog
 - [ ] semantic versioning?
