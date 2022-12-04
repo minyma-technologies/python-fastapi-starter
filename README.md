@@ -27,8 +27,7 @@ git init
 
 ### Install dependencies
 - this template uses Poetry. You can install it like so: `pip install poetry`
-- once installed run `poetry install` to install the dependencies
-- run `pre-commit install --hook-type pre-commit --hook-type pre-push` to install git hooks
+- once installed run `make install` to install the dependencies
 
 ### Run the application locally
 ```
@@ -65,14 +64,16 @@ There are three different environments preconfigured: `test`, `dev`, and `prod`.
 As a jump-in replacement for `npm run ...` you can use `make`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
 Avaialble scripts are:
 
-| Command           | Description                                 |
-| ----------------- | ------------------------------------------- |
-| `make lint_fix`   | Run black and ruff to fix lint issues       |
-| `make lint_check` | Run black and ruff to check for lint issues |
-| `make test`       | Run unit tests                              |
-| `make coverage`   | Run coverage test                           |
-| `make start`      | Start the app                               |
-| `make start_dev`  | Start the app with live reload              |
+| Command            | Description                                 |
+| -----------------  | ------------------------------------------- |
+| `make install`     | Install dependencies (including dev deps.)  |
+| `make install_prod`| Install dependencies (only prod. deps.)     |
+| `make lint_fix`    | Run black and ruff to fix lint issues       |
+| `make lint_check`  | Run black and ruff to check for lint issues |
+| `make test`        | Run unit tests                              |
+| `make coverage`    | Run coverage test                           |
+| `make start`       | Start the app                               |
+| `make start_dev`   | Start the app with live reload              |
 
 ## TODO:
 

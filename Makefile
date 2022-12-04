@@ -15,3 +15,12 @@ start:
 	
 start_dev:
 	poetry run uvicorn app.main:app --reload
+	
+install:
+	poetry install && pre-commit install --hook-type pre-push
+	
+install_prod:
+	poetry install --without dev
+	
+check_commit_msg:
+	cz check --rev-range HEAD~..HEAD
