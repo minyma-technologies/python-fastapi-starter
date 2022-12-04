@@ -11,9 +11,9 @@
 - [x] [PyTest](https://docs.pytest.org/en/7.2.x/) for unit testing
 - [x] [Black](https://black.readthedocs.io/en/stable/) for code formatting
 - [x] [Ruff](https://github.com/charliermarsh/ruff) for linting
+- [x] [Docker](https://www.docker.com/) for containerization
   
 ## Install
-
 ### Fetch the code
 Clone repo, remove git history:
 ```
@@ -31,15 +31,17 @@ git init
 
 ### Run the application locally
 ```
-poetry run uvicorn app.main:app --port <port>
+make start
 ```
 or, for live preloads:
 ```
-poetry run uvicorn app.main:app --port <port> --reload
+make start_dev
 ```
 
 ### Run application in Docker container
-> Coming soon...
+```
+docker-compose up --build
+```
 
 ## Usage
 
@@ -70,7 +72,6 @@ Avaialble scripts are:
 
 ## TODO:
 
-- [ ] create Dockerfile and docker-compose file
 - [ ] setup pre-commit
 - [ ] service layer tests
 - [ ] auto changelog

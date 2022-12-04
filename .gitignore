@@ -1,9 +1,5 @@
-.venv
 __pycache__
-.ruff_cache
-.pytest_cache
-.hypothesis
-.env*
+# ignore dot files
+.*
+# un-ignore dot files here
 !.env.sample
-.coverage
-.doit.db

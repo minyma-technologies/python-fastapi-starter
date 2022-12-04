@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+    postgres:
+        image: "postgres"
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=db
+
+    pgadmin:
+        image: "dpage/pgadmin4"
+        environment:
+           - PGADMIN_DEFAULT_EMAIL=admin@acme.com
+           - PGADMIN_DEFAULT_PASSWORD=password
+        ports:
+            - "81:80"
+        logging:
+            driver: "none"
+    server:
+        build: .
+        depends_on:
+          - postgres
+        environment:
+           - DB_URL=postgresql://root:root@postgres/db
+           - APP_ENV=dev
+        ports:
+            - "8000:80"
+
+volumes:
+    postgresql-volume-compact:
+        external: true
