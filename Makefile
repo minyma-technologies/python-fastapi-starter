@@ -18,6 +18,7 @@ start_dev:
 	
 install:
 	poetry install && poetry run pre-commit install --hook-type pre-push
+
 	
 install_prod:
 	poetry install --without dev
