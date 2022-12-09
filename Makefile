@@ -19,12 +19,8 @@ start_dev:
 install:
 	poetry install && poetry run pre-commit install --hook-type pre-push
 
-	
 install_prod:
 	poetry install --without dev
-	
-check_commit_msg:
-	poetry run cz check --rev-range HEAD~..HEAD
 	
 migrate:
 	poetry run alembic revision --autogenerate -m "migration" && poetry run alembic upgrade head

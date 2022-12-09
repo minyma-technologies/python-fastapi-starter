@@ -12,9 +12,9 @@ repos:
 # enforce conventional commit messages  
 - repo: local
   hooks:
-    - id: commitizen
-      name: Validate last commit message
+    - id: test
+      name: Runu unit tests
       entry: make 
-      args: ['check_commit_msg']
+      args: ['test']
       language: system
       stages: [push]
