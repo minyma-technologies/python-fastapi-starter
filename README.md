@@ -13,6 +13,7 @@
 - [x] [Black](https://black.readthedocs.io/en/stable/) for code formatting
 - [x] [Ruff](https://github.com/charliermarsh/ruff) for linting
 - [x] [Docker](https://www.docker.com/) for containerization
+- [x] Github Actions for CI checks (lint, test, coverage)
   
 ## Install
 ### Fetch the code
@@ -46,9 +47,6 @@ docker-compose up --build
 
 ## Usage
 
-### Commit via commitizen
-Upon push, the last commit message will be checked against [conventional commits](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type), to enforce uniform commit messages on the remote repository. To start a command line guide to easily create a conventional message use: `cz commit`
-
 ### Using Poetry
 Poetry is an alternative python package manager. From experience, the default python package manager `pip` and the virtual environment tool `venv` are poorly designed and often cause package configuration issues. Enter poetry: a modern package manager with a more sane API.
 - create virtual environment: `poetry shell`
@@ -56,13 +54,13 @@ Poetry is an alternative python package manager. From experience, the default py
 - add dev dependency: `poetry add <pacakage> -G dev`
 
 ### Running migrations
-- the template is set up with alembic, an automatic migrations tool for SQLAlchemy. To automagically update the database schema after making changes to the data model, run `alembic revision --autogenerate -m <message>`, then `alembic upgrade head`
+- the template is set up with alembic, an automatic migrations tool for SQLAlchemy. To automatically run migrations against the database run `make migrate`
 
 ### Configuration and secrets
 There are three different environments preconfigured: `test`, `dev`, and `prod`. To switch environments set `APP_ENV` to one of the above environment names. Use `.env` (default, for `dev`), `.env.test` and `.env.prod` for storing the values. A sample configuration is provided in `.env.sample`
 
 ### Development scripts
-As a jump-in replacement for `npm run ...` you can use `make`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
+As a drop-in replacement for `npm run ...` you can use `make`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
 Avaialble scripts are:
 
 | Command            | Description                                 |
@@ -80,5 +78,3 @@ Avaialble scripts are:
 ## TODO:
 
 - [ ] service layer tests
-- [ ] auto changelog
-- [ ] semantic versioning?
