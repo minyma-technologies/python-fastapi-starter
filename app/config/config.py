@@ -1,38 +1,18 @@
 import secrets
-from pydantic import PostgresDsn, BaseSettings, Field
-from typing import Optional
+from pydantic import BaseSettings, Field
 
 
-class BaseAppConfig(BaseSettings):
-    app_env: Optional[str] = Field(env="APP_ENV", default="dev")
-
-
-class DevConfig(BaseAppConfig):
+class Settings(BaseSettings):
     jwt_secret: str = secrets.token_urlsafe(256)
-    app_title: Optional[str] = "Minyma Python+FastAPI Template"
-    db_url: PostgresDsn
-    log_level: Optional[str] = "DEBUG"
-
-    class Config:
-        env_file = ".env"
+    db_url: str
+    log_level: str = "DEBUG"
+    app_title: str = "My app"
 
 
-class ProdConfig(BaseAppConfig):
-    jwt_secret: str = secrets.token_urlsafe(256)
-    app_title: Optional[str] = "Minyma Python+FastAPI Template"
-    db_url: PostgresDsn
-    log_level: Optional[str] = "WARN"
-
-    class Config:
-        env_file = ".env.prod"
+class EnvironmentSelector(BaseSettings):
+    app_env: str = Field(..., env="APP_ENV")
 
 
-class TestConfig(BaseAppConfig):
-    jwt_secret: str = secrets.token_urlsafe(256)
-    app_title: Optional[str] = "Test server"
-
-
-environments = {"dev": DevConfig, "test": TestConfig, "prod": ProdConfig}
-base_config = BaseAppConfig()
-
-settings = environments[base_config.app_env]()
+dotenv_files = {"dev": "dev.env", "test": "test.env", "prod": ".prod.env"}
+env_selector = EnvironmentSelector()
+settings = Settings(_env_file=dotenv_files[env_selector.app_env.lower()])

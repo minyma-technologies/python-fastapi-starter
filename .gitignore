@@ -1,6 +1,11 @@
 __pycache__
 # ignore dot files
 .*
-# un-ignore dot files here
-!.env.sample
-!.pre-commit-config.yaml
+# unignore dot files
+!.dockerignore
+# sqlite db file
+*.db
+
+.vscode/
+.idea/
+*.log

@@ -34,7 +34,7 @@ def test_user_update_fail_invalid_credentials(client: TestClient):
     response = client.put(
         "/api/user",
         json=test_payload,
-        headers={"Authorization": f"Bearer bad.token.xyz"},
+        headers={"Authorization": "Bearer bad.token.xyz"},
     )
     assert response.status_code == 401
 

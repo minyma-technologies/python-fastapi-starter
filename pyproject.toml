@@ -7,14 +7,17 @@ readme = "README.md"
 packages = [{include = "python_fastapi_postgres_starter"}]
 
 [tool.poetry.dependencies]
-python = "^3.8.1"
-fastapi = {extras = ["all"], version = "^0.87.0"}
+python = "^3.9.1"
 passlib = "^1.7.4"
 uvicorn = "^0.20.0"
 psycopg2-binary = "^2.9.5"
 alembic = "^1.8.1"
 python-jose = "^3.3.0"
 cryptography = "^38.0.4"
+cuid2 = "^1.2.0"
+fastapi = "^0.89.1"
+sqlalchemy = "^2.0.1"
+pydantic = {extras = ["dotenv"], version = "^1.10.4"}
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.10.0"
@@ -23,21 +26,47 @@ pytest = "^7.2.0"
 httpx = "^0.23.1"
 pytest-mock = "^3.10.0"
 pytest-cov = "^4.0.0"
-make = "^0.1.6.post2"
-pre-commit = "^2.20.0"
+poethepoet = "^0.18.1"
+pytest-pretty = "^1.1.0"
+mypy = "^0.991"
+types-passlib = "^1.7.7.7"
+types-python-jose = "^3.3.4.3"
+sqlalchemy-stubs = "^0.4"
 
-[tool.commitizen]
-name = "cz_conventional_commits"
-version = "0.0.1"
-tag_format = "$version"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.ruff]
-# ruff configuration
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401", "F403"] # ignore unused imports in __init__.py files
 
 [tool.black]
-# black configuration
+line-length = 100
+target-version = ["py310"]
+
+[tool.poe.tasks]
+test = {shell="APP_ENV=test poetry run pytest -s tests/"}
+coverage = {shell="APP_ENV=test poetry run pytest -s --cov=app tests/"}
+prod = {shell="APP_ENV=prod poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000"}
+dev = {shell = "APP_ENV=dev poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000"}
+watch = {shell = "APP_ENV=dev poetry run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"}
+fix = {shell = "poetry run black . && poetry run ruff --fix . && poetry run mypy app"}
+check = {shell = "poetry run black . --check && poetry run ruff . && poetry run mypy app"}
+db_push = {shell="APP_ENV=dev poetry run alembic revision --autogenerate"}
+db_pull = {shell="APP_ENV=dev poetry run alembic upgrade head"}
+
+[tool.mypy]
+python_version = "3.10"
+plugins = "sqlmypy"
+
+[[tool.mypy.overrides]]
+module = [
+    "cuid2"
+]
+ignore_missing_imports = true
 

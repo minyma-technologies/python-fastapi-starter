@@ -18,9 +18,7 @@ def client(mocker: MockerFixture):
 
 @pytest.fixture
 def mock_user():
-    return User(
-        id="1", username="john_doe", password="password", email="john_doe@acme.com"
-    )
+    return User(id="1", username="john_doe", password="password", email="john_doe@acme.com")
 
 
 @pytest.fixture

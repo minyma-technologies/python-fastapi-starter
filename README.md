@@ -29,15 +29,15 @@ git init
 
 ### Install dependencies
 - this template uses Poetry. You can install it like so: `pip install poetry`
-- once installed run `make install` to install the dependencies
+- once installed run `poetry install` to install the dependencies
 
 ### Run the application locally
 ```
-make start
+poe dev
 ```
 or, for live preloads:
 ```
-make start_dev
+poe watch
 ```
 
 ### Run application in Docker container
@@ -54,26 +54,29 @@ Poetry is an alternative python package manager. From experience, the default py
 - add dev dependency: `poetry add <pacakage> -G dev`
 
 ### Running migrations
-- the template is set up with alembic, an automatic migrations tool for SQLAlchemy. To automatically run migrations against the database run `make migrate`
+- the template is set up with alembic, an automatic migrations tool for SQLAlchemy. 
+- To automatically run migrations against the database run `poe db_pull`
+- To automatically genrate migrations against the database run `poe db_push <message>`
+
 
 ### Configuration and secrets
-There are three different environments preconfigured: `test`, `dev`, and `prod`. To switch environments set `APP_ENV` to one of the above environment names. Use `.env` (default, for `dev`), `.env.test` and `.env.prod` for storing the values. A sample configuration is provided in `.env.sample`
+There are three different environments preconfigured: `test`, `dev`, and `prod`. To switch environments set `APP_ENV` to one of the above environment names. Use `dev.env` (default, for `dev`), `test.env` and `.prod.env` for storing the values. Note the `.` before `prod.env`: adding a dot before any file will automatically git ignore it.
 
 ### Development scripts
-As a drop-in replacement for `npm run ...` you can use `make`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
+As a drop-in replacement for `npm run ...` you can use `poe`. This way you can change development scripts in one place and each collaborator can then use the updated script, without thinking about flags and options.
 Avaialble scripts are:
 
-| Command            | Description                                 |
-| -----------------  | ------------------------------------------- |
-| `make install`     | Install dependencies (including dev deps.)  |
-| `make install_prod`| Install dependencies (only prod. deps.)     |
-| `make lint_fix`    | Run black and ruff to fix lint issues       |
-| `make lint_check`  | Run black and ruff to check for lint issues |
-| `make test`        | Run unit tests                              |
-| `make coverage`    | Run coverage test                           |
-| `make start`       | Start the app                               |
-| `make start_dev`   | Start the app with live reload              |
-| `make migrate  `   | Autogenerate database migration             |
+| Command                 | Description                                        |
+| ----------------------- | -------------------------------------------------- |
+| `poe fix`               | Run black, ruff and mypy to fix lint issues        |
+| `poe check`             | Run black, ruff and mypyp to check for lint issues |
+| `poe test`              | Run unit tests                                     |
+| `poe coverage`          | Run coverage test                                  |
+| `poe prod`              | Start the app   in prod mode                       |
+| `poe dev`               | Start the app in dev with mode                     |
+| `poe watch`             | Start the app in dev mode with live reload         |
+| `poe db_push <message>` | Autogenerate database migration                    |
+| `poe db_pull`           | Apply migrations                                   |
 
 ## TODO:
 

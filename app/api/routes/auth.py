@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from sqlalchemy.orm import Session
-from app.dependencies import get_db
+from app.api.middleware.db_session import get_db
 from app.schema.auth import LoginPayload
 from app.schema.user import UserCreate, UserResponse
 from app.service import user_service, auth_service
@@ -16,7 +16,7 @@ def get_jwt_token(payload: LoginPayload, db: Session = Depends(get_db)):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
         )
-    token = auth_service.create_access_token({"sub": str(user.id)})
+    token = auth_service.create_access_token({"sub": user.id})
     return {"access_token": token, "token_type": "bearer"}
 
 

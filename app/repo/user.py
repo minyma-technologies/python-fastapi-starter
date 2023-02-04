@@ -5,10 +5,10 @@ from sqlalchemy.orm import Session
 
 
 class UserRepo(CRUDBase[User, UserCreate, UserUpdate]):
-    def get_by_username(self, db: Session, username: str) -> User:
+    def get_by_username(self, db: Session, username: str) -> User | None:
         return db.query(User).filter(User.username == username).first()
 
-    def get_by_email(self, db: Session, email: str) -> User:
+    def get_by_email(self, db: Session, email: str) -> User | None:
         return db.query(User).filter(User.email == email).first()
 
 
